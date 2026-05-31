@@ -1,0 +1,247 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Surgena (licensed, DigiType Studio). Drop the file into
+   public/fonts/surgena.woff2 (or .otf) and it takes over automatically.
+   Until then it falls back to Space Grotesk via the Tailwind stack. */
+@font-face {
+  font-family: "Surgena";
+  src: url("/fonts/surgena.woff2") format("woff2"),
+    url("/fonts/surgena.otf") format("opentype");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --fg: #f4f1ea;
+  --rojo: #e2231a;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  margin: 0;
+  overflow-x: hidden;
+}
+
+/* Hide native cursor on devices with a fine pointer (desktop) */
+@media (pointer: fine) {
+  * {
+    cursor: none !important;
+  }
+}
+
+/* Lenis smooth scroll */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+::selection {
+  background: var(--rojo);
+  color: #fff;
+}
+
+/* Thin scrollbar */
+::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--marquee-duration, 32s) linear infinite;
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
+.grain::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+  opacity: 0.04;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.text-stroke {
+  -webkit-text-stroke: 1.2px rgba(244, 241, 234, 0.55);
+  color: transparent;
+}
+
+/* Myopia / astigmatism + flicker treatment for the hero video */
+@keyframes visionFlicker {
+  0%,
+  100% {
+    opacity: 0.92;
+    filter: blur(5px) contrast(1.12) brightness(1.05);
+  }
+  18% {
+    opacity: 0.55;
+    filter: blur(9px) contrast(1.2) brightness(0.85);
+  }
+  22% {
+    opacity: 0.95;
+    filter: blur(4px) contrast(1.1) brightness(1.1);
+  }
+  47% {
+    opacity: 0.7;
+    filter: blur(11px) contrast(1.25) brightness(0.9);
+  }
+  52% {
+    opacity: 0.96;
+    filter: blur(6px) contrast(1.1) brightness(1.05);
+  }
+  73% {
+    opacity: 0.5;
+    filter: blur(13px) contrast(1.3) brightness(0.8);
+  }
+  78% {
+    opacity: 0.9;
+    filter: blur(5px) contrast(1.12) brightness(1.08);
+  }
+}
+
+.vision-blur {
+  animation: visionFlicker 2.6s ease-in-out infinite;
+}
+
+/* Astigmatism ghost: a duplicated, offset, semi-transparent copy */
+.astig-ghost {
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  transform: translate(7px, -5px) scaleX(1.012);
+  filter: blur(7px) hue-rotate(4deg);
+}
+
+@keyframes eyeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.82);
+    filter: blur(14px);
+  }
+  55% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1.04);
+    filter: blur(0);
+  }
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+/* Glitch swap for the glasses images cycling through brands */
+.glass-base {
+  animation: glassSwap 0.75s ease-out;
+}
+@keyframes glassSwap {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+    clip-path: inset(45% 0 35% 0);
+    filter: brightness(1.6) saturate(1.4) hue-rotate(40deg);
+  }
+  8% {
+    opacity: 1;
+    transform: translateX(8px);
+    clip-path: inset(10% 0 70% 0);
+  }
+  16% {
+    transform: translateX(-6px);
+    clip-path: inset(65% 0 8% 0);
+    filter: brightness(1.3) hue-rotate(-50deg);
+  }
+  24% {
+    transform: translateX(4px);
+    clip-path: inset(30% 0 40% 0);
+  }
+  34% {
+    transform: translateX(-2px);
+    clip-path: inset(0 0 0 0);
+    filter: none;
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+    filter: none;
+  }
+}
+
+/* Persistent chromatic-aberration ghosts */
+.glass-ghost {
+  mix-blend-mode: screen;
+  opacity: 0.55;
+}
+.glass-ghost-r {
+  filter: brightness(0) drop-shadow(2px 0 0 rgba(226, 35, 26, 0.9));
+  animation: ghostR 0.75s steps(3, end);
+}
+.glass-ghost-b {
+  filter: brightness(0) drop-shadow(-2px 0 0 rgba(59, 130, 246, 0.9));
+  animation: ghostB 0.75s steps(3, end);
+}
+@keyframes ghostR {
+  0% {
+    transform: translateX(-7px);
+    opacity: 0.9;
+  }
+  30% {
+    transform: translateX(5px);
+  }
+  100% {
+    transform: translateX(2px);
+    opacity: 0.4;
+  }
+}
+@keyframes ghostB {
+  0% {
+    transform: translateX(7px);
+    opacity: 0.9;
+  }
+  30% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(-2px);
+    opacity: 0.4;
+  }
+}
