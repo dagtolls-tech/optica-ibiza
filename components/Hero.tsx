@@ -18,9 +18,15 @@ export default function Hero() {
     setPhase("content");
   };
 
-  // Eye intro -> video
+  // Eye intro -> video (or straight to content on mobile / reduced motion,
+  // where video autoplay is often blocked — e.g. iOS Low Power Mode)
   useEffect(() => {
-    const t = setTimeout(() => setPhase("video"), 600);
+    const lite =
+      typeof window !== "undefined" &&
+      (window.matchMedia("(pointer: coarse)").matches ||
+        window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+    const t = setTimeout(() => setPhase(lite ? "content" : "video"), 700);
     timers.current.push(t);
     return () => clearTimeout(t);
   }, []);
@@ -28,7 +34,8 @@ export default function Hero() {
   // Start playback when the video phase begins
   useEffect(() => {
     if (phase !== "video") return;
-    videoRef.current?.play().catch(() => {});
+    // If autoplay is blocked, skip ahead instead of freezing on black
+    videoRef.current?.play().catch(() => setPhase("crash"));
     ghostRef.current?.play().catch(() => {});
     // Fallback in case onEnded doesn't fire
     const t = setTimeout(() => setPhase("crash"), 6500);
