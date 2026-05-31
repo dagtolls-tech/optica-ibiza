@@ -168,6 +168,64 @@ html.lenis body {
   font-feature-settings: "tnum";
 }
 
+/* CTA glow: a gentle, persuasive pulse on the WhatsApp button.
+   Calibrated to draw the eye without feeling aggressive. */
+@keyframes ctaGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(226, 35, 26, 0.55),
+      0 14px 40px -12px rgba(226, 35, 26, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 26px 6px rgba(226, 35, 26, 0.45),
+      0 18px 55px -10px rgba(226, 35, 26, 0.65);
+  }
+}
+
+.cta-glow {
+  animation: ctaGlow 2.6s ease-in-out infinite;
+}
+
+/* A faint sheen that sweeps across the button to reinforce the call to buy */
+.cta-glow::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(
+    115deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.25) 48%,
+    transparent 66%
+  );
+  background-size: 220% 100%;
+  background-position: 130% 0;
+  animation: ctaSheen 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ctaSheen {
+  0%,
+  18% {
+    background-position: 130% 0;
+  }
+  55%,
+  100% {
+    background-position: -30% 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta-glow,
+  .cta-glow::before {
+    animation: none;
+  }
+  .cta-glow {
+    box-shadow: 0 0 22px 4px rgba(226, 35, 26, 0.4),
+      0 16px 50px -10px rgba(226, 35, 26, 0.6);
+  }
+}
+
 /* Glitch swap for the glasses images cycling through brands */
 .glass-base {
   animation: glassSwap 0.75s ease-out;

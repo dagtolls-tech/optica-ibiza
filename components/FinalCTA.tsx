@@ -40,10 +40,10 @@ export default function FinalCTA() {
           <a
             href={WHATSAPP_HREF}
             data-cursor="hover"
-            className="group mt-10 inline-flex items-center gap-3 rounded-full bg-rojo px-10 py-5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-transform duration-300 hover:scale-[1.04]"
+            className="cta-glow group relative mt-10 inline-flex items-center gap-3 overflow-hidden rounded-full bg-rojo px-10 py-5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-transform duration-300 hover:scale-[1.04]"
           >
-            Escríbenos por WhatsApp
-            <span className="transition-transform duration-300 group-hover:translate-x-1">
+            <span className="relative z-10">Escríbenos por WhatsApp</span>
+            <span className="relative z-10 transition-transform duration-300 group-hover:translate-x-1">
               →
             </span>
           </a>
