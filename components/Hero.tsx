@@ -18,15 +18,14 @@ export default function Hero() {
     setPhase("content");
   };
 
-  // Eye intro -> video (or straight to content on mobile / reduced motion,
-  // where video autoplay is often blocked — e.g. iOS Low Power Mode)
+  // Eye intro -> video (mobile included). Only users who explicitly enabled
+  // "reduce motion" skip straight to content (accessibility).
   useEffect(() => {
-    const lite =
+    const reduce =
       typeof window !== "undefined" &&
-      (window.matchMedia("(pointer: coarse)").matches ||
-        window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    const t = setTimeout(() => setPhase(lite ? "content" : "video"), 700);
+    const t = setTimeout(() => setPhase(reduce ? "content" : "video"), 700);
     timers.current.push(t);
     return () => clearTimeout(t);
   }, []);
@@ -83,6 +82,7 @@ export default function Hero() {
               className="vision-blur absolute inset-0 h-full w-full object-cover"
               src="/video/accidente.mp4"
               poster="/video/accidente-poster.jpg"
+              autoPlay
               muted
               playsInline
               preload="auto"
