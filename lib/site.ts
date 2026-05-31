@@ -1,7 +1,5 @@
-// === CTA PLACEHOLDER ===
-// Sustituye este valor por tu enlace real de WhatsApp.
-// Ejemplo: "https://wa.me/34600000000?text=Hola,%20quiero%20reservar%20una%20revisión"
-export const WHATSAPP_HREF = "#whatsapp";
+export const WHATSAPP_HREF =
+  "https://wa.me/34638616502?text=Hola%2C%20quiero%20reservar%20una%20revisi%C3%B3n%20%2F%20comprar%20un%20producto.";
 
 export const SITE = {
   name: "Óptica y Audiología Ibiza",
