@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { track } from "@vercel/analytics";
 import { WHATSAPP_HREF } from "@/lib/site";
 
 type Phase = "eye" | "video" | "crash" | "content";
@@ -239,6 +240,7 @@ export default function Hero() {
             <motion.a
               href={WHATSAPP_HREF}
               data-cursor="hover"
+              onClick={() => track("contacto_whatsapp", { boton: "hero" })}
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.45, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}

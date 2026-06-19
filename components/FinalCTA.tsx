@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { track } from "@vercel/analytics";
 import Reveal from "./Reveal";
 import { WHATSAPP_HREF, SITE } from "@/lib/site";
 
@@ -40,6 +41,7 @@ export default function FinalCTA() {
           <a
             href={WHATSAPP_HREF}
             data-cursor="hover"
+            onClick={() => track("contacto_whatsapp", { boton: "cta_final" })}
             className="cta-glow group relative mt-10 inline-flex items-center gap-3 overflow-hidden rounded-full bg-rojo px-10 py-5 text-sm font-semibold uppercase tracking-[0.12em] text-white transition-transform duration-300 hover:scale-[1.04]"
           >
             <span className="relative z-10">Escríbenos por WhatsApp</span>
@@ -51,7 +53,7 @@ export default function FinalCTA() {
         <Reveal delay={0.2}>
           <p className="mt-6 text-sm text-bone/50">
             o llámanos al{" "}
-            <a href={SITE.phoneHref} className="text-bone/80 underline-offset-4 hover:underline" data-cursor="hover">
+            <a href={SITE.phoneHref} onClick={() => track("contacto_telefono")} className="text-bone/80 underline-offset-4 hover:underline" data-cursor="hover">
               {SITE.phone}
             </a>
           </p>
