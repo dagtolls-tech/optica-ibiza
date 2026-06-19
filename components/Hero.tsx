@@ -19,14 +19,22 @@ export default function Hero() {
     setPhase("content");
   };
 
-  // Eye intro -> video (mobile included). Only users who explicitly enabled
-  // "reduce motion" skip straight to content (accessibility).
+  // Eye intro. On mobile (and with "reduce motion") we skip the accident
+  // video + crash screen entirely: just a soft, quick logo and then a big
+  // entrance straight into the main content. Desktop keeps the full cinematic.
   useEffect(() => {
     const reduce =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isMobile =
+      typeof window !== "undefined" &&
+      window.matchMedia("(max-width: 767px)").matches;
 
-    const t = setTimeout(() => setPhase(reduce ? "content" : "video"), 700);
+    const skipCinematic = reduce || isMobile;
+    const t = setTimeout(
+      () => setPhase(skipCinematic ? "content" : "video"),
+      isMobile ? 480 : 700
+    );
     timers.current.push(t);
     return () => clearTimeout(t);
   }, []);
@@ -148,8 +156,7 @@ export default function Hero() {
             <img
               src="/logo-eye.png"
               alt="Óptica Ibiza"
-              className="w-[260px] max-w-[70vw] sm:w-[360px]"
-              style={{ animation: "eyeIn 0.6s cubic-bezier(0.22,1,0.36,1) forwards" }}
+              className="eye-intro w-[300px] max-w-[80vw] sm:w-[360px]"
             />
           </motion.div>
         )}
