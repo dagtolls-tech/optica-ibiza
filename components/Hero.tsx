@@ -30,11 +30,14 @@ export default function Hero() {
       typeof window !== "undefined" &&
       window.matchMedia("(max-width: 767px)").matches;
 
-    const skipCinematic = reduce || isMobile;
-    const t = setTimeout(
-      () => setPhase(skipCinematic ? "content" : "video"),
-      isMobile ? 480 : 700
-    );
+    // Mobile (and reduce-motion): no logo intro at all — the page just enters
+    // with a soft, persuasive fade straight into the main content.
+    if (isMobile || reduce) {
+      setPhase("content");
+      return;
+    }
+
+    const t = setTimeout(() => setPhase("video"), 700);
     timers.current.push(t);
     return () => clearTimeout(t);
   }, []);
