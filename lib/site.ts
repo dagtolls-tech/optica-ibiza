@@ -1,5 +1,5 @@
 export const WHATSAPP_HREF =
-  "https://wa.me/34638616502?text=Hola%2C%20quiero%20reservar%20una%20revisi%C3%B3n%20%2F%20comprar%20un%20producto.";
+  "https://wa.me/34638616502?text=%C2%A1Hola%20Cati%21%20Quiero%20reservar%20mi%20revisi%C3%B3n%20gratuita%20%F0%9F%98%8A";
 
 export const SITE = {
   name: "Óptica y Audiología Ibiza",
