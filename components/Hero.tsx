@@ -37,7 +37,9 @@ export default function Hero() {
       return;
     }
 
-    const t = setTimeout(() => setPhase("video"), 700);
+    // Desktop: soft logo intro, then straight into the content.
+    // (The accident video is no longer shown on any device.)
+    const t = setTimeout(() => setPhase("content"), 700);
     timers.current.push(t);
     return () => clearTimeout(t);
   }, []);
