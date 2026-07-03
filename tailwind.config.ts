@@ -11,6 +11,10 @@ const config: Config = {
         ink: "#0a0a0a",
         bone: "#f4f1ea",
         rojo: "#e2231a",
+        marino: "#0a2340",
+        marino2: "#123a5c",
+        acero: "#2f74c0",
+        aceroLight: "#5aa0e6",
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],

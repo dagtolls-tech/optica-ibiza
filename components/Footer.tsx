@@ -5,9 +5,12 @@ export default function Footer() {
     <footer className="border-t border-white/10 bg-ink py-16">
       <div className="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-6 md:grid-cols-3">
         <div>
-          <span className="font-display text-2xl font-extrabold tracking-tight">
-            óptica <span className="text-rojo">ibiza</span>
+          <span className="font-elegant text-2xl font-extrabold tracking-tight text-bone">
+            Cati <span className="text-aceroLight">Villaoslada</span>
           </span>
+          <p className="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-bone/45">
+            Una marca de Óptica Ibiza
+          </p>
           <p className="mt-3 max-w-xs text-sm leading-relaxed text-bone/55">
             Óptica especializada y centro auditivo en Benidorm desde {SITE.since}.
             La óptica que de verdad se preocupa por ti.
