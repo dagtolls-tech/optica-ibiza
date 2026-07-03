@@ -91,7 +91,7 @@ export default function Hero() {
               "linear-gradient(180deg, #3f86d6 0%, #2f74c0 55%, #245ea3 100%)",
           }}
         >
-          <span className="relative z-10 text-[15px] font-semibold tracking-tight text-white sm:text-lg">
+          <span className="relative z-10 font-display text-[13px] font-bold uppercase tracking-[0.08em] text-white sm:text-[15px]">
             Reservar mi revisión con Cati
           </span>
           <span className="relative z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white/20 text-white transition-transform duration-300 group-hover:translate-x-1">
