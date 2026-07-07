@@ -152,17 +152,12 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.9, ease }}
           className="mt-5 w-full max-w-[300px]"
         >
-          <div className="relative flex aspect-[4/5] w-full items-center justify-center overflow-hidden rounded-2xl bg-black ring-1 ring-white/10">
-            <div className="flex flex-col items-center gap-2 text-white/35">
-              <svg width="34" height="34" viewBox="0 0 24 24" fill="none">
-                <rect x="3" y="3" width="18" height="18" rx="2" stroke="currentColor" strokeWidth="1.6" />
-                <circle cx="8.5" cy="8.5" r="1.6" fill="currentColor" />
-                <path d="M21 15l-5-5L5 21" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              <span className="text-[10px] uppercase tracking-[0.2em]">
-                Imagen o vídeo de Cati
-              </span>
-            </div>
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black ring-1 ring-white/10">
+            <img
+              src="/cati-foto.jpg"
+              alt="Cati Villaoslada, optometrista en Benidorm"
+              className="h-full w-full object-cover"
+            />
           </div>
         </motion.div>
 
