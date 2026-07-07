@@ -1,12 +1,26 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { track } from "@vercel/analytics";
 import { WHATSAPP_HREF } from "@/lib/site";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
+const galeria = [
+  "/cati-foto.jpg",
+  ...Array.from(
+    { length: 37 },
+    (_, i) => `/galeria/foto-${String(i + 1).padStart(2, "0")}.jpg`
+  ),
+];
+
 export default function Hero() {
+  const [slide, setSlide] = useState(0);
+  const prev = () =>
+    setSlide((s) => (s - 1 + galeria.length) % galeria.length);
+  const next = () => setSlide((s) => (s + 1) % galeria.length);
+
   return (
     <section
       className="relative min-h-[100svh] w-full overflow-hidden"
@@ -152,12 +166,46 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.9, ease }}
           className="mt-5 w-full max-w-[300px]"
         >
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-2xl bg-black ring-1 ring-white/10">
-            <img
-              src="/cati-foto.jpg"
-              alt="Cati Villaoslada, optometrista en Benidorm"
-              className="h-full w-full object-cover"
-            />
+          <div className="pointer-events-auto relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-black ring-1 ring-white/10">
+            <AnimatePresence mode="wait">
+              <motion.img
+                key={slide}
+                src={galeria[slide]}
+                alt="Cati Villaoslada en la óptica de Benidorm"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </AnimatePresence>
+
+            {/* prev / next translucent controls */}
+            <button
+              onClick={prev}
+              data-cursor="hover"
+              aria-label="Foto anterior"
+              className="absolute left-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-white/30"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M15 6l-6 6 6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+            <button
+              onClick={next}
+              data-cursor="hover"
+              aria-label="Foto siguiente"
+              className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-white/30"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            </button>
+
+            {/* counter */}
+            <div className="absolute bottom-2 right-2 rounded-full bg-black/45 px-2.5 py-1 text-[10px] font-medium tracking-tight text-white/90 backdrop-blur">
+              {slide + 1} / {galeria.length}
+            </div>
           </div>
         </motion.div>
 
