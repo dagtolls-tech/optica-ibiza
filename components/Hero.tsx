@@ -49,12 +49,12 @@ export default function Hero() {
       </div>
 
       {/* ===== Content ===== */}
-      <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-6 pb-14 pt-28 text-center sm:pt-32">
+      <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-6 pb-8 pt-28 text-center sm:pt-32">
         <motion.h1
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease }}
-          className="lining-nums mt-6 font-elegant text-[27px] font-semibold uppercase italic leading-[1.12] tracking-tight text-white sm:text-5xl"
+          className="lining-nums mt-6 font-elegant text-[33px] font-semibold uppercase italic leading-[1.1] tracking-tight text-white sm:text-6xl"
         >
           28 años cuidando tu forma de ver la vida
         </motion.h1>

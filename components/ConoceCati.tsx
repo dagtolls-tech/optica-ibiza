@@ -17,14 +17,14 @@ export default function ConoceCati() {
 
   return (
     <section
-      className="relative w-full overflow-hidden px-6 pb-16 pt-6 sm:pb-20 sm:pt-8"
+      className="relative w-full overflow-hidden px-6 pb-16 pt-2 sm:pb-20 sm:pt-3"
       style={{
         background:
           "linear-gradient(180deg, #1f5886 0%, #1a4a72 100%)",
       }}
     >
       <div className="mx-auto max-w-md text-center">
-        <div className="mx-auto mb-8 h-px w-36 bg-white/25" />
+        <div className="mx-auto mb-6 h-px w-36 bg-white/25" />
 
         <motion.h2
           initial={{ opacity: 0, y: 18 }}
