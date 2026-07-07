@@ -17,10 +17,10 @@ export default function ConoceCati() {
 
   return (
     <section
-      className="relative w-full overflow-hidden px-6 py-16 sm:py-20"
+      className="relative w-full overflow-hidden px-6 pb-16 pt-6 sm:pb-20 sm:pt-8"
       style={{
         background:
-          "linear-gradient(180deg, #1f5886 0%, #123a5c 55%, #0a2340 100%)",
+          "linear-gradient(180deg, #1f5886 0%, #1a4a72 100%)",
       }}
     >
       <div className="mx-auto max-w-md text-center">

@@ -1,31 +1,15 @@
 "use client";
 
-import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import { track } from "@vercel/analytics";
 import { WHATSAPP_HREF } from "@/lib/site";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-const galeria = [
-  "/cati-foto.jpg",
-  ...Array.from(
-    { length: 37 },
-    (_, i) => `/galeria/foto-${String(i + 1).padStart(2, "0")}.jpg`
-  ),
-];
-
 export default function Hero() {
-  const [slide, setSlide] = useState(0);
-  const [navigated, setNavigated] = useState(false);
-  const next = () => {
-    setNavigated(true);
-    setSlide((s) => (s + 1) % galeria.length);
-  };
-
   return (
     <section
-      className="relative min-h-[100svh] w-full overflow-hidden"
+      className="relative w-full overflow-hidden"
       style={{
         background:
           "linear-gradient(180deg, #071b33 0%, #0d2b48 42%, #17466e 78%, #1f5886 100%)",
@@ -65,12 +49,12 @@ export default function Hero() {
       </div>
 
       {/* ===== Content ===== */}
-      <div className="relative z-10 mx-auto flex min-h-[100svh] max-w-2xl flex-col items-center px-6 pb-6 pt-24 text-center sm:pt-28">
+      <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-6 pb-14 pt-28 text-center sm:pt-32">
         <motion.h1
           initial={{ opacity: 0, y: 22 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease }}
-          className="lining-nums font-elegant text-[27px] font-semibold uppercase italic leading-[1.12] tracking-tight text-white sm:text-5xl"
+          className="lining-nums mt-6 font-elegant text-[27px] font-semibold uppercase italic leading-[1.12] tracking-tight text-white sm:text-5xl"
         >
           28 años cuidando tu forma de ver la vida
         </motion.h1>
@@ -161,67 +145,8 @@ export default function Hero() {
           ))}
         </motion.div>
 
-        {/* Media placeholder — drop images or videos of Cati here later */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.9, ease }}
-          className="mt-5 w-full max-w-[300px]"
-        >
-          <div className="pointer-events-auto relative aspect-[3/4] w-full overflow-hidden rounded-2xl bg-black ring-1 ring-white/10">
-            <AnimatePresence mode="wait">
-              <motion.img
-                key={slide}
-                src={galeria[slide]}
-                alt="Cati Villaoslada en la óptica de Benidorm"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </AnimatePresence>
-
-            {/* next translucent control — on the right */}
-            <button
-              onClick={next}
-              data-cursor="hover"
-              aria-label="Foto siguiente"
-              className="absolute right-2 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/15 text-white ring-1 ring-white/25 backdrop-blur-md transition-colors hover:bg-white/30"
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
-                <path d="M9 6l6 6-6 6" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-            </button>
-
-            {/* counter — only after the user starts navigating */}
-            <AnimatePresence>
-              {navigated && (
-                <motion.div
-                  initial={{ opacity: 0, y: 4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 4 }}
-                  transition={{ duration: 0.25 }}
-                  className="absolute bottom-2.5 left-2.5 flex items-center gap-1.5 rounded-full px-2.5 py-1 text-[10px] font-semibold tracking-tight text-white/90 ring-1 ring-white/15 backdrop-blur-md"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, rgba(63,134,214,0.35) 0%, rgba(36,94,163,0.35) 100%)",
-                  }}
-                >
-                  <svg width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden>
-                    <rect x="3" y="5" width="18" height="14" rx="2.5" stroke="currentColor" strokeWidth="2" />
-                    <circle cx="8.5" cy="10.5" r="1.6" fill="currentColor" />
-                    <path d="M4 18l5-4 3 2 4-3 4 3" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                  {slide + 1} / {galeria.length}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </motion.div>
-
-        {/* Scroll hint (white arrow) */}
-        <div className="mt-8 flex flex-col items-center gap-1.5">
+        {/* Scroll hint → points to the video right below */}
+        <div className="mt-12 flex flex-col items-center gap-1.5">
           <span className="text-[10px] font-semibold uppercase tracking-[0.22em] text-white/70">
             Conoce a Cati en vídeo
           </span>
